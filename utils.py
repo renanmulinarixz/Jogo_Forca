@@ -42,18 +42,25 @@ def verificar_chute_palavra(x):
 
 
 
-def parcial(segredo, chute):
-    segredo = list(segredo)
-    parcial = []
-    contador = 0
-    for i in range(len(segredo)):
-        if segredo[i] == chute:
-            parcial.append(chute)
-            contador += 1
+def parcial(segredo, chute, escolha_usuario):
+    if escolha_usuario == 1:
+        segredo = list(segredo)
+        parcial = []
+        contador = 0
+        for i in range(len(segredo)):
+            if segredo[i] == chute:
+                parcial.append(chute)
+                contador += 1
+            else:
+                parcial.append("_")
+        print(f"voce acerrtou {contador} letras")
+        return "".join(parcial)
+    else:
+        if chute == segredo:
+            return True
         else:
-            parcial.append("_")
-    print(f"voce acerrtou {contador} letras")
-    return "".join(parcial)
+            return False
+    
        
 
 

@@ -7,7 +7,7 @@ def regras():
     print(f'aqui vai um exemplo de segredo: {palavras.gerar_segredo()}')
 
 
-def ganhou_perdeu_aindaNenhum(resultado, segredo,escolha_usuario):
+def ganhou_perdeu_aindaNenhum(resultado, segredo,escolha_usuario, func):
     global rodadas
     if escolha_usuario == 1:
         if resultado == segredo and rodadas <= 10:
@@ -23,9 +23,11 @@ def ganhou_perdeu_aindaNenhum(resultado, segredo,escolha_usuario):
             rodadas += 0
             return False
     else:
-        if resultado == segredo:
+        if func:
+            print(f"Parabens, voce acertou a palavra em {rodadas} tentativas. Belo chute")
             return True
         else:
+            print(f"Infelizmente voce nao acertou a palavra. A palavra era {segredo}. Chuta mal dms")
             return False
     
 
@@ -47,10 +49,8 @@ def atualizadorLetras(resultado, segredo, funcao):
     
 def verificaPalavra(resultado, segredo):
     if resultado == segredo:
-        print("Parabens, voce acertou a palavra! Fim do jogo")
         return True
     else:
-        print("Infelizmente voce nao acertou a palavra ao chutar. Fim do jogo")
         return False
 
 
@@ -84,7 +84,7 @@ def jogar():
                 resultado = utils.parcial(segredo, chute)
             resultado = atualizadorLetras(resultado, segredo, utils.parcial(segredo, chute))
             print(resultado)
-            x = ganhou_perdeu_aindaNenhum(resultado, segredo, escolha_usuario)
+            x = ganhou_perdeu_aindaNenhum(resultado, segredo, escolha_usuario, utils.parcial(segredo, chute))
             if x:
                 break
             else:
@@ -93,12 +93,11 @@ def jogar():
                 else:
                     break
         else:
+            print(segredo)
             chute = utils.pedir_chute(escolha_usuario)
-            if rodadas == 0:
-                resultado = utils.parcial(segredo, chute)
-            resultado = verificaPalavra(resultado, segredo)
+            resultado = verificaPalavra(chute, segredo)
             print(resultado)
-            x = ganhou_perdeu_aindaNenhum(resultado, segredo)
+            x = ganhou_perdeu_aindaNenhum(resultado, segredo, escolha_usuario, utils.parcial(segredo, chute, escolha_usuario))
             if x:
                 break
             else:
