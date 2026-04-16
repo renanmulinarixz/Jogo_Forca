@@ -2,7 +2,7 @@ import random
 
 def gerar_segredo():
     lista_palavras = [
-    "alvo", "amor", "area", "arte", "ator", "bala", "base", "beijo", "belo", "bico",
+    "alvo", "amor", "area", "arte", "ator", "bala", "base", "ovos", "belo", "bico",
     "bobo", "bola", "bolo", "bota", "cafe", "cais", "calo", "capa", "casa", "cedo",
     "cena", "chao", "coca", "coxa", "cruz", "dado", "data", "dedo", "deus", "doce",
     "dono", "duas", "eixo", "erva", "faca", "fada", "falo", "fato", "fera", "figo",

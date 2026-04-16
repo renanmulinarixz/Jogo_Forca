@@ -4,15 +4,22 @@ class letra_invalida(Exception):
     pass
 
 verificador = False
-def pedir_chute():
+def pedir_chute(escolha_usuario):
     while verificador != True:
         chute = input("Digite um chute: ")
-        if verificar_chute(chute):
-            return chute
+        if escolha_usuario == 1:
+            if verificar_chute_letra(chute):
+                return chute
+            else:
+                print("chute invalido, tente novamente")
         else:
-            print("letra invalida, digite novamente")
+            if verificar_chute_palavra(chute):
+                return chute
+            else:
+                print("chute invalido, tente novamente")
+        
 
-def verificar_chute(x):
+def verificar_chute_letra(x):
     try:
         list(x)
         if isinstance(x, str) and len(x) == 1 and x.isalpha():
@@ -21,6 +28,18 @@ def verificar_chute(x):
             raise letra_invalida
     except letra_invalida:
         return False
+    
+def verificar_chute_palavra(x):
+    try:
+        list(x)
+        if isinstance(x, str) and len(x) == 4 and x.isalpha():
+           return True
+        else:
+            raise letra_invalida
+    except letra_invalida:
+        return False
+    
+
 
 
 def parcial(segredo, chute):
@@ -36,4 +55,6 @@ def parcial(segredo, chute):
     print(f"voce acerrtou {contador} letras")
     return "".join(parcial)
        
+
+
 
