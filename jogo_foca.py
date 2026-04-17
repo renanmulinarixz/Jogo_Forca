@@ -1,6 +1,7 @@
 import palavras
 import palavras
 import utils
+from colorama import Fore,Style
 
 def regras():
     print("O jogo e simples, o sistema ira gerar uma palavra aleatoria e cabe a voce tentar acerta-la. Voce tem 5 tentativas (ao errar a quinta o jogo sera finalizado). A palavra tem 4 letras. CASO VOCE CHUTE UMA PALAVRA E ERRE, O JOGO ACABARA IMEDIATAMENTE. CASO VOCE CHUTE UMA LETRA E ERRE, VOCE PERDERA UMA TENTATIVA. BOA SORTE!")
@@ -11,15 +12,15 @@ def ganhou_perdeu_aindaNenhum(resultado, segredo,escolha_usuario, func):
     global rodadas
     if escolha_usuario == 1:
         if resultado == segredo and rodadas <= 10:
-            print(f"Parabens, voce acertou a palavra em {rodadas} tentativas")
+            print(f"{Fore.GREEN}Parabens, voce acertou a palavra em {rodadas} tentativas{Style.RESET_ALL}")
             rodadas += 0
             return True
         elif resultado != segredo and rodadas <= 10:
-            print(f"Voce ainda nao acertou a palavra, tente novamente")
+            print(f"{Fore.YELLOW}Voce ainda nao acertou a palavra, tente novamente{Style.RESET_ALL}")
             rodadas += 1
             return False
         else:
-            print(f"Infelizmente voce nao acertou a palavra. A palavra era {segredo}")
+            print(f"{Fore.RED}Infelizmente voce nao acertou a palavra. A palavra era {segredo}{Style.RESET_ALL}")
             rodadas += 0
             return False
     else:
